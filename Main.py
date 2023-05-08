@@ -4,19 +4,43 @@
 import tabula
 import pandas as pd
 import os
+import openpyxl
+
 
 pdf_path = "data.pdf"
-os.mkdir("data")
+try:
+    os.mkdir("data")
+except:
+    os.replace("data", "data")
 
 dfs = tabula.read_pdf(pdf_path, pages="all", stream=True)
-# read_pdf returns list of DataFrames
+
 data = 1
 
 for table in dfs:
-    filename = "data/Data" + str(data) + ".xlsx"
+    filepath = "data/"
+    filename = "Data" + str(data) + ".xlsx"
+    fullpath = filepath + filename
     print(table)
-    table.to_excel(filename)
+    print(type(table))
+    print(table.describe())
+    table.to_excel(fullpath, "data")
+
     data += 1
 
-result_df = pd.concat(dfs)
-result_df.to_excel("data.xlsx")
+    df = table.describe()
+    # pd.DataFrame({
+    # 'Name': ['Alice', 'Bob', 'Charlie'],
+    # 'Age': [25, 30, 35],
+    # 'City': ['New York', 'London', 'Paris'] })
+
+    # Write the dataframe to an Excel file
+    with pd.ExcelWriter(fullpath) as writer:
+        df=table.describe()
+        df.index = ['count', 'mean', 'std', 'min', '25%', '50%', '75%', 'max']
+        
+        df.to_excel(
+            writer, sheet_name="Sheet1", index=True
+        )
+
+        table.to_excel(writer, sheet_name="Sheet2", index=False)
