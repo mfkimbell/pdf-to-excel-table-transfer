@@ -5,6 +5,8 @@ Tools used:
 * `os` for creation of a folder to store data
 * `tabula` for reading pdf data into pandas dataframes
 * `pandas` for storing and manipulating data into excel
+* `pdm` package manager
+* `docker` for containerizing the application
 
 ```Python
 dfs = tabula.read_pdf(pdf_path, pages="all", stream=True)
