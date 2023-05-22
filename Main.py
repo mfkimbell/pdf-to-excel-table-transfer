@@ -4,7 +4,7 @@
 import tabula
 import pandas as pd
 import os
-import openpyxl
+
 
 
 pdf_path = "data.pdf"

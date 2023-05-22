@@ -1,0 +1,17 @@
+
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Mitchell Kimbell", email = "107063397+mfkimbell@users.noreply.github.com"},
+]
+dependencies = [
+    "openpyxl>=3.1.2",
+    "tabula>=1.0.5",
+    "tabula-py>=2.7.0",
+    "xlsxwriter>=3.1.1",
+    "pandas>=2.0.1",
+]
+requires-python = ">=3.9"
+license = {text = "MIT"}
